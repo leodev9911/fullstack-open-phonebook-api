@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
 
+app.use(express.static('dist'));
 morgan.token('body', (request, response) => JSON.stringify(request.body));
 
 app.use(express.json());
@@ -41,6 +42,10 @@ let persons = [
         number: '52592682',
     },
 ];
+
+const unknownEndpoint = (request, response) => {
+    response.status(404).send({ error: 'unknown endpoint' })
+  }  
 
 const generateRandomId = () => {
     return Math.floor(Math.random() * 100000);
@@ -93,6 +98,8 @@ app.post('/api/persons/', (request, response) => {
 
     return response.status(201).json(newPerson);
 });
+
+app.use(unknownEndpoint);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
