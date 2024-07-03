@@ -7,7 +7,11 @@ app.use(express.static('dist'));
 morgan.token('body', (request, response) => JSON.stringify(request.body));
 
 app.use(express.json());
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
+app.use(
+    morgan(
+        ':method :url :status :res[content-length] - :response-time ms :body'
+    )
+);
 app.use(cors());
 
 let persons = [
@@ -44,14 +48,18 @@ let persons = [
 ];
 
 const unknownEndpoint = (request, response) => {
-    response.status(404).send({ error: 'unknown endpoint' })
-  }  
+    response.status(404).send({ error: 'unknown endpoint' });
+};
 
 const generateRandomId = () => {
     return Math.floor(Math.random() * 100000);
-}
+};
 
-app.get('/', (request, response) =>
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
+
+app.get('/api', (request, response) =>
     response.send(`
         <p>Phonebook has info for ${persons.length} people</p>
         <p>${new Date()}</p>
@@ -64,7 +72,7 @@ app.get('/api/persons', (request, response) => {
 
 app.get('/api/persons/:id', (request, response) => {
     const id = request.params.id;
-    const person = persons.find(person => person.id === id);
+    const person = persons.find((person) => person.id === id);
 
     response.json(person);
 });
@@ -74,25 +82,25 @@ app.post('/api/persons/', (request, response) => {
 
     if (!body.name || !body.number) {
         return response.status(400).json({
-            error: 'Content is missing'
-        })
+            error: 'Content is missing',
+        });
     }
 
-    const isInList = persons?.some(person => person.name === body.name);
+    const isInList = persons?.some((person) => person.name === body.name);
 
     if (isInList) {
         return response.status(400).json({
-            error: 'name must be unique'
-        })
+            error: 'name must be unique',
+        });
     }
 
     const newPerson = {
         id: generateRandomId(),
         name: body.name,
-        number: body.number
-    }
+        number: body.number,
+    };
 
-    persons = persons.concat(newPerson); 
+    persons = persons.concat(newPerson);
     console.log(persons);
     console.log(newPerson);
 
