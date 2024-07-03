@@ -57,7 +57,7 @@ const generateRandomId = () => {
 };
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '..', 'dist'));
+    res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
 });
 
 app.get('/api', (request, response) =>
