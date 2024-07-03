@@ -56,9 +56,9 @@ const generateRandomId = () => {
     return Math.floor(Math.random() * 100000);
 };
 
-// app.get('/', (req, res) => {
-//     res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
-// });
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
+});
 
 app.get('/api', (request, response) =>
     response.send(`

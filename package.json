@@ -4,8 +4,8 @@
   "description": "\"This is an excersie for the Fullstack-open course\"",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node ./api/index.js",
+    "dev": "nodemon ./api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "@powershell Remove-Item -Recurse -Force dist ; cd C:\\Leo\\Programacion\\university-education\\fullstack-open\\parts\\part2\\phonebook ; npm run build ; Copy-Item -Recurse dist C:\\Leo\\Programacion\\university-education\\fullstack-open-phonebook-backend"
   },
