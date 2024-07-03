@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 
-app.use(express.static(path.join(__dirname, '..', 'dist')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 morgan.token('body', (request, response) => JSON.stringify(request.body));
 
 app.use(express.json());
@@ -57,7 +57,7 @@ const generateRandomId = () => {
 };
 
 app.get('/', (req, res) => {
-    res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
+    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
 });
 
 app.get('/api', (request, response) =>
