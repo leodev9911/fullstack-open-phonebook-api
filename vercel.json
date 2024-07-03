@@ -1,18 +1,22 @@
 {
     "builds": [
-      {
-        "src": "/",
-        "use": "@vercel/build",
-        "config": {
-            "buildCommand": "npm run build",
-            "outputDir": "/dist"
-          }
-      }
+        {
+            "src": "./index.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "./dist/index.html",
+            "use": "@vercel/static"
+        }
     ],
     "routes": [
-      {
-        "src": "/",
-        "dest": "/index.html"
-      }
+        {
+            "src": "/api/(.*)",
+            "dest": "/api"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
     ]
-  }
+}
