@@ -35,6 +35,11 @@ let persons = [
         name: 'Leonardo Fernández',
         number: '52592682',
     },
+    {
+        id: '6',
+        name: 'Helena Ruano',
+        number: '52592682',
+    },
 ];
 
 const generateRandomId = () => {
