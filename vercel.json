@@ -1,8 +1,8 @@
 {
     "builds": [
       {
-        "src": "./index.js",
-        "use": "@vercel/node",
+        "src": "./",
+        "use": "@vercel/build",
         "config": {
             "buildCommand": "npm run build",
             "outputDir": "/dist"
@@ -11,8 +11,8 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "/"
+        "src": "/",
+        "dest": "/index.html"
       }
     ]
   }
