@@ -1,7 +1,8 @@
 {
     "version": 2,
     "rewrites": [
-      { "src": "/(.*)", "destination": "/api" }
-    ]
+      { "source": "/(.*)", "destination": "/api" }
+    ],
+    "outputDirectory": "dist"
 }
   

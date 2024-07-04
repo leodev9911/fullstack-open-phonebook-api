@@ -48,6 +48,8 @@ let persons = [
     },
 ];
 
+//mongodb+srv://leofullstack:<password>@cluster0.0e1ts9z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: 'unknown endpoint' });
 };
