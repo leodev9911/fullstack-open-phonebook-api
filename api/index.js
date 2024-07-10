@@ -1,10 +1,9 @@
-require('dotenv').config();
+require('dotenv').config()
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const Person = require('./models/person');
-const person = require('./models/person');
 const app = express();
 
 app.use(express.static('dist'));
@@ -69,10 +68,7 @@ app.put('/api/people/:id', (request, response, next) => {
     const { id } = request.params;
 
 
-    const person = { 
-        name,
-        number
-     };
+    const person = { name, number };
 
     Person.findByIdAndUpdate(id, person, { new: true, runValidators: true, context: 'query' })
         .then((updatedPhone) => response.json(updatedPhone))
